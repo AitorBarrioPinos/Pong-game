@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfn61sfdwr7y3"]
+
+[ext_resource type="Texture2D" uid="uid://6kf58vxkrjkr" path="res://assets/texturas/Barra.png" id="1_fd7yn"]
+[ext_resource type="Script" uid="uid://ck00dkyyfy3qv" path="res://script/barra.gd" id="1_lvsak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_essh1"]
+size = Vector2(56, 112)
+
+[node name="Barra" type="CharacterBody2D"]
+script = ExtResource("1_lvsak")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(127, 166)
+rotation = 1.5708
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("1_fd7yn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(127, 166)
+shape = SubResource("RectangleShape2D_essh1")

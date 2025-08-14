@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgq8ninooa84j"]
+
+[ext_resource type="Texture2D" uid="uid://camlx3luwb6p7" path="res://assets/texturas/Mundo.png" id="1_2a4uc"]
+[ext_resource type="Script" uid="uid://4ik7343t7xft" path="res://script/pelota.gd" id="1_ex3n4"]
+[ext_resource type="AudioStream" uid="uid://bxjdktv7nh1sc" path="res://assets/audio/Blip_Select.wav" id="3_lj47l"]
+[ext_resource type="AudioStream" uid="uid://bamxrh73iik6e" path="res://assets/audio/Blip_Select2.wav" id="4_154oe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex3n4"]
+radius = 19.0
+
+[node name="Pelota" type="CharacterBody2D"]
+script = ExtResource("1_ex3n4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_2a4uc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ex3n4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Paddle_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lj47l")
+
+[node name="Wall_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_154oe")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

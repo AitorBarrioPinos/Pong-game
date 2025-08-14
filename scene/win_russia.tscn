@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfbdcjbfcm054"]
+
+[ext_resource type="Texture2D" uid="uid://d1p04i83pld4y" path="res://assets/texturas/russia.png" id="1_lffqr"]
+[ext_resource type="Texture2D" uid="uid://f7itf2cdrnyb" path="res://assets/texturas/Putin.png" id="3_gkbi8"]
+
+[node name="Fondo" type="Sprite2D"]
+position = Vector2(577, 322)
+scale = Vector2(0.298958, 0.336458)
+texture = ExtResource("1_lffqr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1358.05, 187.244)
+scale = Vector2(4.09178, 3.83173)
+texture = ExtResource("3_gkbi8")

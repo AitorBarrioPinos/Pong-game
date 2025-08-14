@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm3x80n2wdnau"]
+
+[ext_resource type="Script" uid="uid://dn66wdwr05on0" path="res://script/main_menu.gd" id="1_3er1b"]
+[ext_resource type="FontFile" uid="uid://ia2ewjv3k0re" path="res://assets/font/Xolonium-Regular.ttf" id="2_hxu56"]
+[ext_resource type="PackedScene" uid="uid://cgmbdw51vlpr6" path="res://scene/opciones_menu.tscn" id="3_2fwvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fwvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0iwki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sepwh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxu56"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14wem"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2atga"]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3er1b")
+
+[node name="VBoxMenu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 263.0
+offset_right = 889.0
+offset_bottom = 496.0
+
+[node name="Resume" type="Button" parent="VBoxMenu"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fwvj")
+text = "RESUME"
+
+[node name="Play" type="Button" parent="VBoxMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0iwki")
+text = "NEW GAME"
+
+[node name="Options" type="Button" parent="VBoxMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sepwh")
+text = "OPTIONS"
+
+[node name="Back_Menu" type="Button" parent="VBoxMenu"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sepwh")
+text = "BACK TO MENU"
+
+[node name="Quit" type="Button" parent="VBoxMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hxu56")
+text = "QUIT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 300.0
+offset_top = 158.0
+offset_right = 892.0
+offset_bottom = 503.0
+theme_override_constants/separation = 30
+
+[node name="1Player" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_14wem")
+text = "1 PLAYER"
+
+[node name="2Player" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_hxu56")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_2atga")
+text = "2 PLAYERS"
+
+[node name="opciones_menu" parent="." instance=ExtResource("3_2fwvj")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxMenu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxMenu/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxMenu/Back_Menu" to="." method="_on_back_menu_pressed"]
+[connection signal="pressed" from="VBoxMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="HBoxContainer/1Player" to="." method="_on_player1_pressed"]
+[connection signal="pressed" from="HBoxContainer/2Player" to="." method="_on_player2_pressed"]

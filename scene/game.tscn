@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://cc028roo4x0aa"]
+
+[ext_resource type="PackedScene" uid="uid://cfn61sfdwr7y3" path="res://scene/barra 1.tscn" id="1_5kiuu"]
+[ext_resource type="Script" uid="uid://cf7xymey3tgvf" path="res://script/global.gd" id="1_sng2h"]
+[ext_resource type="Script" uid="uid://c52xj2y73kyh4" path="res://script/game_manager.gd" id="1_xwcet"]
+[ext_resource type="PackedScene" uid="uid://dgq8ninooa84j" path="res://scene/pelota.tscn" id="2_dbls1"]
+[ext_resource type="FontFile" uid="uid://ia2ewjv3k0re" path="res://assets/font/Xolonium-Regular.ttf" id="2_p1ry8"]
+[ext_resource type="AudioStream" uid="uid://ckjxdevcgx00x" path="res://assets/audio/Russian_Anthem_chorus.ogg" id="3_ym5sv"]
+[ext_resource type="PackedScene" uid="uid://dm0wbv4bip6g1" path="res://scene/goal.tscn" id="4_p1ry8"]
+[ext_resource type="PackedScene" uid="uid://cobgv38ns4h76" path="res://scene/barra 2.tscn" id="4_qpk70"]
+[ext_resource type="PackedScene" uid="uid://cr7apagu445q2" path="res://scene/win_eeuu.tscn" id="6_81276"]
+[ext_resource type="PackedScene" uid="uid://bm3x80n2wdnau" path="res://scene/main_menu.tscn" id="6_xlg7c"]
+[ext_resource type="AudioStream" uid="uid://bhnsde4y2e4wy" path="res://assets/audio/Star_Spangled_Banner_instrumental.ogg" id="7_ve786"]
+[ext_resource type="AudioStream" uid="uid://bamxrh73iik6e" path="res://assets/audio/Blip_Select2.wav" id="9_yq8tf"]
+[ext_resource type="AudioStream" uid="uid://b50mq05yiavty" path="res://assets/audio/Hit_Hurt5.wav" id="10_yq8tf"]
+[ext_resource type="PackedScene" uid="uid://bfbdcjbfcm054" path="res://scene/win_russia.tscn" id="11_ym5sv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5kiuu"]
+
+[node name="Game" type="Node2D"]
+
+[node name="global" type="Node" parent="."]
+script = ExtResource("1_sng2h")
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("1_xwcet")
+
+[node name="ScoreP2" type="Label" parent="GameManager"]
+offset_left = 642.0
+offset_right = 747.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("2_p1ry8")
+theme_override_font_sizes/font_size = 109
+text = "0"
+
+[node name="ScoreP1" type="Label" parent="GameManager"]
+offset_left = 448.0
+offset_top = 1.0
+offset_right = 553.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("2_p1ry8")
+theme_override_font_sizes/font_size = 109
+text = "0"
+
+[node name="Winner" type="Label" parent="GameManager"]
+visible = false
+z_index = 1
+offset_left = 196.0
+offset_top = 152.0
+offset_right = 973.0
+offset_bottom = 568.0
+theme_override_colors/font_color = Color(0.317732, 0.199792, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.66933, 0.313543, 1)
+theme_override_fonts/font = ExtResource("2_p1ry8")
+theme_override_font_sizes/font_size = 90
+text = "WINNER 
+PLAYER 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="new_game" type="Timer" parent="GameManager"]
+wait_time = 5.0
+ignore_time_scale = true
+
+[node name="Russia_anthem" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("3_ym5sv")
+
+[node name="Win_russia" parent="GameManager" instance=ExtResource("11_ym5sv")]
+process_mode = 3
+visible = false
+
+[node name="Timer_win_russia" type="Timer" parent="GameManager"]
+process_mode = 3
+wait_time = 1.5
+one_shot = true
+
+[node name="Win_EEUU" parent="GameManager" instance=ExtResource("6_81276")]
+visible = false
+
+[node name="EEUU_anthem" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("7_ve786")
+
+[node name="Timer_win_EEUU" type="Timer" parent="GameManager"]
+process_mode = 3
+wait_time = 1.5
+one_shot = true
+
+[node name="Techo" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Techo"]
+position = Vector2(334, 0)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_5kiuu")
+
+[node name="Fondo" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fondo"]
+position = Vector2(334, 648)
+shape = SubResource("WorldBoundaryShape2D_5kiuu")
+
+[node name="Barra 1" parent="." instance=ExtResource("1_5kiuu")]
+position = Vector2(-52, 134)
+
+[node name="Barra 2" parent="." instance=ExtResource("4_qpk70")]
+position = Vector2(1078, 308)
+
+[node name="Pelota" parent="." instance=ExtResource("2_dbls1")]
+z_index = 1
+position = Vector2(415, 301)
+
+[node name="Goal" parent="." instance=ExtResource("4_p1ry8")]
+position = Vector2(-5, -1)
+
+[node name="Goal2" parent="." instance=ExtResource("4_p1ry8")]
+position = Vector2(1157, 658)
+rotation = 3.14159
+
+[node name="MainMenu" parent="." instance=ExtResource("6_xlg7c")]
+visible = false
+z_index = 5
+
+[node name="Wall_bounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_yq8tf")
+
+[node name="Goal_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_yq8tf")
+
+[connection signal="timeout" from="GameManager/new_game" to="GameManager" method="_on_new_game_timeout"]
+[connection signal="timeout" from="GameManager/Timer_win_russia" to="GameManager" method="_on_timer_win_russia_timeout"]
+[connection signal="timeout" from="GameManager/Timer_win_EEUU" to="GameManager" method="_on_timer_win_eeuu_timeout"]
+[connection signal="body_entered" from="Goal" to="Pelota" method="_on_goal_body_entered"]
+[connection signal="body_entered" from="Goal2" to="Pelota" method="_on_goal_2_body_entered"]
